@@ -1,4 +1,4 @@
-# ACTION<div align="center">
+<div align="center">
 
 # 🎬 ACTION
 
@@ -25,15 +25,35 @@ A REELOID travels the other way. **You send the film itself.** The receiver taps
 
 ## The show
 
-```mermaid
-flowchart LR
-    A[Tap the REELOID] --> B[House lights dim]
-    B --> C[Title card]
-    C --> D[Curtains part]
-    D --> E[The film]
-    E --> F[Closing card<br/>words · links · signature]
-    F --> G[PLAY AGAIN]
-```
+<div align="center">
+
+**👆 Tap the REELOID**
+
+↓
+
+**💡 House lights dim**
+
+↓
+
+**🎟️ Title card**
+
+↓
+
+**🎭 Curtains part**
+
+↓
+
+**🎬 The film**
+
+↓
+
+**📜 Closing card** — words · links · signature
+
+↓
+
+**▶ PLAY AGAIN**
+
+</div>
 
 ---
 
