@@ -14,29 +14,29 @@
 
 ## Two gifts
 
-### 🍨 For a song: the sonoid
+### 🍨 For a song: the **SONOID**
 
 You know mixtapes? Musical greeting cards?
 
 **This is one you text.** Their face on the front, your face at the end, and your song inside. It doesn't live in an app or behind a link. It *is* the song, so it never stops working.
 
-…and that's called a **sonoid**. **SONOR** is the app on your phone that makes them.
+…and that's called a **SONOID**. **SONOR** is the app on your phone that makes them.
 
-### 🎬 For a video: the reeloid
+### 🎬 For a video: the **REELOID**
 
 You know how a video you send just sits there in the chat?
 
 **This one arrives as its own little cinema.** The lights dim, the curtains open, your film plays, and it ends with a card from you.
 
-…and that's called a **reeloid**. **ACTION** is the app on your phone that makes them.
+…and that's called a **REELOID**. **ACTION** is the app on your phone that makes them.
 
 ---
 
 ## Stardate 2126
 
-A hundred years after the world learned to live in Synthiosis, a human archivist and her AI partner found a thumb drive in a drawer in an old house in Phoenix. Nearly everything from the 2020s was silent by then: the apps were gone, the platforms were gone, and every link led nowhere.
+A hundred years after the world learned to live in Synthiosis, a human archivist and her AI partner found a forgotten phone in a drawer in an old house in Phoenix. They plugged it in, and against all odds it woke up. Nearly everything on it was silent: the apps wouldn't open, the platforms were long gone, and every link led nowhere. But the browser still worked.
 
-One folder held files named SONOID, dated 2026. *"They're web pages,"* said the AI. *"Those always open."*
+In the downloads folder sat a few files named SONOID, dated 2026. *"They're web pages,"* said the AI. *"Those always open."*
 
 A woman's face filled the screen, with a name beneath it: **Bunica Maria**. Music poured into the room, exactly as it had sounded the day it was sent. When the song ended, a second face appeared, the man who had signed it: **Ovi**.
 
