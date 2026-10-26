@@ -81,11 +81,31 @@ blockquote cite{display:block;margin-top:12px;font-family:'Instrument Sans',sans
 .links a{color:var(--ivory);text-underline-offset:4px;text-decoration-color:rgba(239,230,216,.4)}
 .motto{margin-top:26px;color:var(--dim);font-size:15px}
 </style>
+<!-- app: SONOR & ACTION -->
+<style>
+#install{display:none;margin:0 0 40px;padding:14px 22px;border:0;border-radius:999px;
+  background:#F2C10E;color:#141008;font:600 16px 'Instrument Sans',system-ui,sans-serif;letter-spacing:.04em;cursor:pointer}
+#install.on{display:inline-block}
+#ovi-badge{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:99;
+  padding:8px 13px;border-radius:999px;background:#0A0D0F;color:#F2C10E;border:1px solid #F2C10E;
+  font:600 11px/1 'Instrument Sans',system-ui,sans-serif;letter-spacing:.14em;touch-action:none;user-select:none;cursor:grab;
+  box-shadow:0 0 10px rgba(242,193,14,.55),0 0 22px rgba(214,32,40,.35);animation:oviglow 3.2s ease-in-out infinite}
+@keyframes oviglow{50%{box-shadow:0 0 16px rgba(242,193,14,.8),0 0 30px rgba(40,110,235,.45)}}
+@media (prefers-reduced-motion:reduce){#ovi-badge{animation:none}}
+</style>
+
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0A0D0F">
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}</script>
 </head>
 <body>
 <main>
   <h1>Apps help you make songs and videos. These turn them into gifts someone keeps.</h1>
   <p class="lede">No app to install on the other end, no account, no link that breaks. What you send is the gift itself, and it keeps working for as long as a phone can open a web page.</p>
+
+  <button id="install" type="button">INSTALL THE APP · SONOR + ACTION</button>
 
   <div class="pair">
     <section class="gift" aria-labelledby="s-h">
@@ -134,6 +154,22 @@ blockquote cite{display:block;margin-top:12px;font-family:'Instrument Sans',sans
     if(e[0].isIntersecting){ setTimeout(function(){ s.classList.add('open'); },500); io.disconnect(); }
   },{threshold:.6});
   io.observe(s);
+})();
+</script>
+<div id="ovi-badge" aria-label="Made by Ovi with Claude">MADE BY OVI WITH CLAUDE</div>
+<script>
+(function(){
+  var btn=document.getElementById('install'), ask=null;
+  var standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+  addEventListener('beforeinstallprompt',function(e){ if(standalone) return; e.preventDefault(); ask=e; btn.classList.add('on'); });
+  btn.addEventListener('click',function(){ if(!ask) return; ask.prompt(); ask.userChoice.finally(function(){ ask=null; btn.classList.remove('on'); }); });
+  addEventListener('appinstalled',function(){ btn.classList.remove('on'); });
+  var b=document.getElementById('ovi-badge'), sx,sy,ox,oy,drag=false;
+  b.addEventListener('pointerdown',function(e){ drag=true; b.setPointerCapture(e.pointerId); var r=b.getBoundingClientRect(); sx=e.clientX; sy=e.clientY; ox=r.left; oy=r.top; b.style.cursor='grabbing'; });
+  b.addEventListener('pointermove',function(e){ if(!drag) return;
+    var x=Math.max(4,Math.min(innerWidth-b.offsetWidth-4,ox+e.clientX-sx)), y=Math.max(4,Math.min(innerHeight-b.offsetHeight-4,oy+e.clientY-sy));
+    b.style.left=x+'px'; b.style.top=y+'px'; b.style.right='auto'; b.style.bottom='auto'; });
+  b.addEventListener('pointerup',function(){ drag=false; b.style.cursor='grab'; });
 })();
 </script>
 </body>

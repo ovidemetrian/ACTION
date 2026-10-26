@@ -1,0 +1,32 @@
+{
+  "id": "./",
+  "name": "SONOR & ACTION",
+  "short_name": "SONOR·ACTION",
+  "description": "Turn a song into a SONOID and a video into a REELOID — gifts someone keeps. By Ovi.",
+  "start_url": "./?source=app",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0A0D0F",
+  "theme_color": "#0A0D0F",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "SONOR — make a SONOID",
+      "short_name": "SONOR",
+      "url": "./sonor.html?source=shortcut",
+      "icons": [{ "src": "shortcut-sonor.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "ACTION — make a REELOID",
+      "short_name": "ACTION",
+      "url": "./action.html?source=shortcut",
+      "icons": [{ "src": "shortcut-action.png", "sizes": "96x96", "type": "image/png" }]
+    }
+  ]
+}
