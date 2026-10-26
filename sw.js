@@ -4,11 +4,12 @@
    Icons and other files: stored copy first.
    Only same-origin GET requests are touched; blob: sonoids and reeloids,
    fonts and shares pass straight through. */
-const CACHE = 'sonor-action-v2';
+const CACHE = 'sonor-action-v3';
 const CORE = [
   './', 'index.html', 'sonor.html', 'action.html', 'manifest.webmanifest',
   'icon-192.png', 'icon-512.png', 'apple-touch-icon.png',
-  'shortcut-sonor.png', 'shortcut-action.png'
+  'shortcut-sonor.png', 'shortcut-action.png',
+  'reeloid.mp4', 'reeloid-poster.jpg'
 ];
 
 self.addEventListener('install', e => {
@@ -42,8 +43,8 @@ self.addEventListener('fetch', e => {
     return;
   }
   e.respondWith(
-    caches.match(req).then(hit => hit || fetch(req).then(res => {
-      if (res.ok) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); }
+    caches.match(req, { ignoreSearch: true }).then(hit => hit || fetch(req).then(res => {
+      if (res.status === 200) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); }
       return res;
     }))
   );
