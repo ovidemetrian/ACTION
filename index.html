@@ -56,21 +56,23 @@ h1 em{color:var(--brass)}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* REELOID: a lit screen behind velvet that parts */
-.screen{position:absolute;left:13%;right:13%;top:15%;bottom:21%;border-radius:6px;overflow:hidden;
+.screen{position:absolute;left:14%;right:14%;top:8%;bottom:6%;border-radius:6px;overflow:hidden;
   background:#0A080C}
-.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* whole frame, never cropped: top edge sits under the valance, any spare room falls to black at the bottom */
+.screen video{position:absolute;left:0;top:11.6%;width:100%;height:auto;aspect-ratio:1;object-fit:contain;display:block}
 .screen::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(90% 75% at 50% 45%,transparent 55%,rgba(20,10,4,.55))}
 .screen .film{display:none}
 .curtain{position:absolute;top:0;bottom:0;width:51%;z-index:2;
   background:repeating-linear-gradient(90deg,var(--velvet) 0 7px,var(--velvet-deep) 11px,var(--velvet) 15px);
-  transition:transform 3.2s cubic-bezier(.45,0,.25,1)}
+  transition:transform 2s cubic-bezier(.5,0,.3,1)}
 .curtain.l{left:0}.curtain.r{right:0}
-.valance{position:absolute;left:0;right:0;top:0;height:13%;z-index:3;
+.valance{position:absolute;left:0;right:0;top:0;height:11.6%;z-index:3;
   background:linear-gradient(var(--velvet-deep),var(--velvet));box-shadow:0 3px 8px rgba(0,0,0,.45)}
-.screen.open .curtain.l{transform:translateX(-80%)}
-.screen.open .curtain.r{transform:translateX(80%)}
-.stage{position:absolute;left:10%;right:10%;bottom:15%;height:2px;background:var(--brass);opacity:.55;border-radius:2px}
+.screen.open .curtain{transition-duration:3.2s;transition-timing-function:cubic-bezier(.45,0,.25,1)}
+.screen.open .curtain.l{transform:translateX(-93%)}
+.screen.open .curtain.r{transform:translateX(93%)}
+.stage{position:absolute;left:10%;right:10%;bottom:3%;height:2px;background:var(--brass);opacity:.55;border-radius:2px}
 
 .name{margin-top:1.8dvh;font-size:10.5px;font-weight:600;letter-spacing:.28em;color:var(--brass)}
 .gift h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(22px,3dvh,30px);margin:.4dvh 0 .6dvh;line-height:1.1}
@@ -124,7 +126,7 @@ footer{padding-top:1.6dvh;border-top:1px solid rgba(239,230,216,.10)}
       <div class="art" aria-hidden="true">
         <div class="screen" id="screen">
           
-          <video id="feature" src="reeloid.mp4" poster="reeloid-poster.jpg" muted playsinline loop preload="auto" disablepictureinpicture></video>
+          <video id="feature" src="reeloid.mp4" poster="reeloid-poster.jpg" muted playsinline preload="auto" disablepictureinpicture></video>
           <div class="valance"></div>
           <div class="curtain l"></div><div class="curtain r"></div>
         </div>
@@ -151,13 +153,23 @@ footer{padding-top:1.6dvh;border-top:1px solid rgba(239,230,216,.10)}
 
 <div id="ovi-badge" aria-label="Made by Ovi with Claude">MADE BY OVI WITH CLAUDE</div>
 <script>
-/* house lights: curtains stay closed a beat, then part slowly as the feature starts */
+/* house lights: every showing is a full cycle. Curtains closed a beat, part slowly as
+   the clip starts, close again just before it ends, then the next showing begins. */
 (function(){
   var s=document.getElementById('screen'), v=document.getElementById('feature');
-  var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function show(){ try{ v.currentTime=0; }catch(e){} var p=v.play(); if(p&&p.catch) p.catch(function(){}); s.classList.add('open'); }
-  if(still){ s.classList.add('open'); return; }
-  setTimeout(show,1500);
+  var still=matchMedia('(prefers-reduced-motion: reduce)').matches, closing=false;
+  function showing(){
+    closing=false;
+    try{ v.currentTime=0; }catch(e){}
+    var p=v.play(); if(p&&p.catch) p.catch(function(){});
+    s.classList.add('open');
+  }
+  if(still){ v.loop=true; s.classList.add('open'); var p=v.play(); if(p&&p.catch) p.catch(function(){}); return; }
+  v.addEventListener('timeupdate',function(){
+    if(!closing && v.duration && v.currentTime >= v.duration-2.1){ closing=true; s.classList.remove('open'); }
+  });
+  v.addEventListener('ended',function(){ setTimeout(showing,900); });
+  setTimeout(showing,1500);
 })();
 
 (function(){
