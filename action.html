@@ -16,11 +16,14 @@ html,body{height:100%;background:#000;font-family:var(--f);color:var(--txt);
 body{display:flex;align-items:center;justify-content:center;overflow:hidden}
 
 /* fixed 9:16 everywhere. no second layout. */
+@media (hover:hover) and (pointer:fine){html body #panel{width:min(100vw,calc(100vh*9/16),420px);height:min(100vh,calc(100vw*16/9),747px);border-radius:14px;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 30px 80px rgba(0,0,0,.7)}}
 /* one size, everywhere. it only shrinks if a screen is smaller than this. */
 #head{padding:6px 0;line-height:0;border-bottom:1px solid var(--line);
   background:linear-gradient(180deg,#2C313A 0%,#232830 50%,#191D24 100%)}
 #banner{display:block;width:91%;max-width:91%;height:auto;margin:0 auto}
-#panel{position:relative;width:min(100vw,calc(100vh*9/16),420px);height:min(100vh,calc(100vw*16/9),747px);
+#panel{position:relative;width:min(100vw,calc(100vh*9/16));height:min(100vh,calc(100vw*16/9));
+  /* phone: fill the screen. computer: float at phone size. */
+  
   background:var(--ink);display:flex;flex-direction:column;overflow:hidden;
   background-image:radial-gradient(140% 60% at 50% -10%,#13171E 0%,#06070A 60%)}
 
