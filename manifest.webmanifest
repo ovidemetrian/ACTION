@@ -1,7 +1,7 @@
 {
-  "id": "./",
+  "id": "./?app=sonor-action-2",
   "name": "SONOR & ACTION",
-  "short_name": "SONOR·ACTION",
+  "short_name": "SONOR ACTION",
   "description": "Turn a song into a SONOID and a video into a REELOID — gifts someone keeps. By Ovi.",
   "start_url": "./?source=app",
   "scope": "./",
