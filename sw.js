@@ -4,7 +4,7 @@
    Icons and other files: stored copy first.
    Only same-origin GET requests are touched; blob: sonoids and reeloids,
    fonts and shares pass straight through. */
-const CACHE = 'sonor-action-v1';
+const CACHE = 'sonor-action-v2';
 const CORE = [
   './', 'index.html', 'sonor.html', 'action.html', 'manifest.webmanifest',
   'icon-192.png', 'icon-512.png', 'apple-touch-icon.png',
@@ -29,7 +29,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
-  const isPage = req.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname.endsWith('/');
+  const isPage = req.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname.endsWith('/') || url.pathname.endsWith('.webmanifest');
   if (isPage) {
     e.respondWith(
       fetch(req).then(res => {
